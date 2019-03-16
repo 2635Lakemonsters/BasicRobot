@@ -83,7 +83,9 @@ public class GameToolStateMachine {
             case INITIAL_AUTO:
                 return GameTools.HATCH1F;
             case AUTO_HATCHF:
-                return GameTools.HATCH1F;
+                return GameTools.HATCH2F;
+            case AUTO_HATCHB:
+                return GameTools.HATCH2B;
             case CARGO1:
                 return GameTools.CARGOTRANSIT;
             case CARGOTRANSIT:
@@ -182,10 +184,6 @@ public class GameToolStateMachine {
                 return GameTools.CARGO2;
             case HATCH3B:
                 return GameTools.CARGO2;
-            case AUTO_HATCHF:
-                return GameTools.AUTO_HATCHB;
-            case AUTO_HATCHB:
-                return GameTools.AUTO_HATCHF;
             default:
                 return currentState;
         }
@@ -215,6 +213,10 @@ public class GameToolStateMachine {
                 return GameTools.HATCH2B;
             case HATCH3F:
                 return GameTools.HATCH3B;
+            case AUTO_HATCHF:
+                return GameTools.AUTO_HATCHB;
+            case AUTO_HATCHB:
+                return GameTools.AUTO_HATCHF;
             default:
                 return currentState;
         }

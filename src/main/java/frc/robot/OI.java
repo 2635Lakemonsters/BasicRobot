@@ -53,4 +53,6 @@ public class OI {
   public Button cargoOutButton = new JoystickButton(rightJoy, 2);
   public Button cargoOutLeftButton = new JoystickButton(rightJoy, 7);
   public Button cargoOutRightButton = new JoystickButton(rightJoy, 10);
+  public Button autoInitGameToolButton = new JoystickButton(rightJoy, 8);
+
 }

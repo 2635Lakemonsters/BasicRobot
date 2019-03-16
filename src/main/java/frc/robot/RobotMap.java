@@ -111,7 +111,7 @@ public class RobotMap {
   // public static final int ELEVATOR_SHIP_BALL_HEIGHT = 94;
   public static final int ELEVATOR_SHIP_BALL_HEIGHT = 155;
 
-  public static final double ELEVATOR_AUTO_HATCH_HEIGHT = 21.25;
+  public static final double ELEVATOR_AUTO_HATCH_HEIGHT = 27.25;
 
 
 

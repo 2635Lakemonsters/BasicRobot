@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
   public static Elevator elevator;
   public static Flower flower;
   public static Switcher switcher;
+  public static Vision vision;
 
   public static GameToolStateMachine gameToolStateMachine;
   DriveCommand driveCommand;
@@ -52,6 +53,7 @@ public class Robot extends TimedRobot {
   CargoOutCommand cargoOutLeftCommand;
   CargoOutCommand cargoOutRightCommand;
   CargoInCommand cargoInCommand;
+  AutoInitGameToolCommand autoInitGameToolCommand;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -64,6 +66,7 @@ public class Robot extends TimedRobot {
     elevator = new Elevator();
     flower = new Flower();
     switcher = new Switcher();
+    vision = new Vision();
 
     gameToolStateMachine = new GameToolStateMachine();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
@@ -81,7 +84,7 @@ public class Robot extends TimedRobot {
     cargoOutLeftCommand = new CargoOutCommand(-1.0,0);
     cargoOutRightCommand = new CargoOutCommand(0,-1.0);
     cargoInCommand = new CargoInCommand();
-
+    autoInitGameToolCommand = new AutoInitGameToolCommand();
 
 
     oi.gameToolIncrementButton.whenPressed(gameToolIncrementCommand);
@@ -92,6 +95,8 @@ public class Robot extends TimedRobot {
     oi.cargoOutButton.toggleWhenPressed(cargoOutCommand);
     oi.cargoOutLeftButton.toggleWhenPressed(cargoOutLeftCommand);
     oi.cargoOutRightButton.toggleWhenPressed(cargoOutRightCommand);
+    oi.autoInitGameToolButton.whenPressed(autoInitGameToolCommand);
+
   }
 
   /**
@@ -141,6 +146,16 @@ public class Robot extends TimedRobot {
      * = new MyAutoCommand(); break; case "Default Auto": default:
      * autonomousCommand = new ExampleCommand(); break; }
      */
+    if (driveCommand != null && !driveCommand.isRunning()) {
+			driveCommand.start();
+		}
+    
+    if (elevatorControl != null && !elevatorControl.isRunning()){
+      elevatorControl.start();
+    }
+
+    gameToolStateMachine.autoHatch();
+
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -167,10 +182,10 @@ public class Robot extends TimedRobot {
     }
     driveCommand.start();
 
-      elevator.encoderStart();
-      elevatorControl.start();
-      switcherControl.start();
-      gameToolStateMachine.reset();
+    elevator.encoderStart();
+    elevatorControl.start();
+    switcherControl.start();
+    gameToolStateMachine.reset();
 
   }
 
