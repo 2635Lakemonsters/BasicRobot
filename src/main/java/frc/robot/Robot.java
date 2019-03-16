@@ -37,6 +37,7 @@ public class Robot extends TimedRobot {
   public static Flower flower;
   public static Switcher switcher;
   public static Vision vision;
+  public static Climber climber;
 
   public static GameToolStateMachine gameToolStateMachine;
   DriveCommand driveCommand;
@@ -54,6 +55,11 @@ public class Robot extends TimedRobot {
   CargoOutCommand cargoOutRightCommand;
   CargoInCommand cargoInCommand;
   AutoInitGameToolCommand autoInitGameToolCommand;
+  RaiseRobotCommand raiseRobotCommand;
+  ClimberRaiseBackCommand climberRaiseBackCommand;
+  ClimberRaiseFrontCommand climberRaiseFrontCommand;
+  ClimberDriveCommand climberDriveCommand;
+  ClimberControl climberControl;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -67,6 +73,7 @@ public class Robot extends TimedRobot {
     flower = new Flower();
     switcher = new Switcher();
     vision = new Vision();
+    climber = new Climber();
 
     gameToolStateMachine = new GameToolStateMachine();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
@@ -85,6 +92,11 @@ public class Robot extends TimedRobot {
     cargoOutRightCommand = new CargoOutCommand(0,-1.0);
     cargoInCommand = new CargoInCommand();
     autoInitGameToolCommand = new AutoInitGameToolCommand();
+    raiseRobotCommand = new RaiseRobotCommand();
+    climberRaiseBackCommand = new ClimberRaiseBackCommand();
+    climberRaiseFrontCommand = new ClimberRaiseFrontCommand();
+    climberDriveCommand = new ClimberDriveCommand(1, 9);
+    climberControl = new ClimberControl();
 
 
     oi.gameToolIncrementButton.whenPressed(gameToolIncrementCommand);
@@ -96,7 +108,10 @@ public class Robot extends TimedRobot {
     oi.cargoOutLeftButton.toggleWhenPressed(cargoOutLeftCommand);
     oi.cargoOutRightButton.toggleWhenPressed(cargoOutRightCommand);
     oi.autoInitGameToolButton.whenPressed(autoInitGameToolCommand);
-
+    oi.climbUpButton.whileHeld(raiseRobotCommand);
+    oi.climbRaiseBackButton.whileHeld(climberRaiseBackCommand);
+    oi.climbRaiseFrontButton.whileHeld(climberRaiseFrontCommand);
+    oi.climbDriveButton.whileHeld(climberDriveCommand);
   }
 
   /**
@@ -186,6 +201,7 @@ public class Robot extends TimedRobot {
     elevatorControl.start();
     switcherControl.start();
     gameToolStateMachine.reset();
+    climberControl.start();
 
   }
 

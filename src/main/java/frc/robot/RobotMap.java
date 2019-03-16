@@ -35,8 +35,8 @@ public class RobotMap {
   public static int LEFT_INTAKE_MOTOR_CHANNEL = 8;
   public static int RIGHT_INTAKE_MOTOR_CHANNEL = 9;
 
-  public static int FRONT_LEFT_EXTENDER_CHANNEL = 10;
-  public static int FRONT_RIGHT_EXTENDER_CHANNEL = 11;
+  public static int FRONT_LEFT_EXTENDER_CHANNEL = 11;
+  public static int FRONT_RIGHT_EXTENDER_CHANNEL = 10;
   public static int BACK_EXTENDER_CHANNEL = 12;
   public static int BACK_EXTENDER_DRIVE_CHANNEL = 13;
 
