@@ -89,7 +89,7 @@ public class Climber extends Subsystem {
     int leftError = Math.abs(EXTENDER_HEIGHT - Math.abs(leftValue));
     int backError = Math.abs(EXTENDER_HEIGHT - Math.abs(backValue));
 
-    //System.out.println("rightError: " + rightError + "\t leftError: " + leftError + "\t backError: " + backError);
+    //System.out.println("rightValue: " + rightValue + "\t leftValue: " + leftValue + "\t backValue: " + backValue);
     
     if ( rightError < errorThreshold
      && leftError < errorThreshold
@@ -187,7 +187,8 @@ public class Climber extends Subsystem {
     FRExtender.set(ControlMode.Position, -intermediateSetPoint);
     FLExtender.set(ControlMode.Position, intermediateSetPoint);
     BExtender.set(ControlMode.Position, -intermediateSetPointBack);
-    System.out.println(FLExtender.getSelectedSensorPosition());
+
+    System.out.println("FL val:" + FLExtender.getSelectedSensorPosition() + " FR val: " + FRExtender.getSelectedSensorPosition() + " Back val: " + BExtender.getSelectedSensorPosition());
   }
 
   /*
