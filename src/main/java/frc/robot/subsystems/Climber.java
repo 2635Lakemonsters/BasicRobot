@@ -211,7 +211,7 @@ public class Climber extends Subsystem {
     FLExtender.set(ControlMode.Position, -intermediateSetPoint);
     BExtender.set(ControlMode.Position, -intermediateSetPointBack);
 
-    System.out.println("FL val:" + FLExtender.getSelectedSensorPosition() + " FR val: " + FRExtender.getSelectedSensorPosition() + " Back val: " + BExtender.getSelectedSensorPosition());
+    //System.out.println("FL val:" + FLExtender.getSelectedSensorPosition() + " FR val: " + FRExtender.getSelectedSensorPosition() + " Back val: " + BExtender.getSelectedSensorPosition());
   }
 
   public void setClimberCurrent(double left, double right, double back){

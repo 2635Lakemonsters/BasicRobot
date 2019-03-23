@@ -113,6 +113,8 @@ public class RobotMap {
 
   public static final double ELEVATOR_AUTO_HATCH_HEIGHT = 27.25;
 
+  public static final double ELEVATOR_AUTO_CARRIAGE_HEIGHT = 7.0;
+  public static final double SWITCHER_AUTO_HEIGHT = 17.0;
 
 
   //public static final String k_path_name = "example";

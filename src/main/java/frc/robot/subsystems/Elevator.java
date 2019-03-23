@@ -242,6 +242,9 @@ public class Elevator extends Subsystem {
 		largeController.setSmartMotionMaxVelocity(1, 0);
 		largeController.setSmartMotionMaxVelocity(1, 0);
 	}
+	public void autoCarriageEncoderReset() {
+		smallEncoder.setPosition(RobotMap.ELEVATOR_AUTO_CARRIAGE_HEIGHT); //small is carriage
+	}
 	// No longer has fake values <3, this just sets the values for the ground, switch, scale, and climb heights that the elevator uses.
 	public static enum Height {
 		//GROUND(RobotMap.ELEVATOR_GROUND_LOWER_HEIGHT),

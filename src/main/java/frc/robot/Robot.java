@@ -171,8 +171,8 @@ public class Robot extends TimedRobot {
     if (elevatorControl != null && !elevatorControl.isRunning()){
       elevatorControl.start();
     }
-
-    gameToolStateMachine.autoHatch();
+    gameToolStateMachine.autonomousReset();
+    //gameToolStateMachine.autoHatch();
 
 
     // schedule the autonomous command (example)
@@ -204,7 +204,8 @@ public class Robot extends TimedRobot {
     elevatorControl.start();
     switcherControl.start();
     gameToolStateMachine.reset();
-    //climberControl.start();
+    // Climber is now controlled only turned on when needed, by the button controls
+    //climberControl.start(); 
 
   }
 

@@ -82,6 +82,9 @@ public class Switcher extends Subsystem {
     encoder.setPosition(0);
     this.currentSwitcherState = SwitcherState.FLOOR;
   }
+  public void autoSwitcherEncoderReset() {
+    encoder.setPosition(RobotMap.SWITCHER_AUTO_HEIGHT);
+  }
 
   public void moveSwitch(SwitcherState setPoint) {
     //LOGIC HEAR FOR WHEN ABLE TO GO TO WHAT STATE

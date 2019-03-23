@@ -7,6 +7,7 @@
 
 package frc.robot.model;
 
+import frc.robot.subsystems.Switcher;
 import frc.robot.subsystems.Elevator.Height;
 import frc.robot.subsystems.Switcher.SwitcherState;
 import frc.robot.subsystems.Flower.FlowerBud;
@@ -49,6 +50,8 @@ public class GameToolStateMachine {
     }
 
     GameTools autonomousResetState() {
+        Robot.switcher.autoSwitcherEncoderReset();
+        Robot.elevator.autoCarriageEncoderReset();
         return GameTools.INITIAL_AUTO;
     }
 
