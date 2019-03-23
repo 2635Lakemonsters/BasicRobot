@@ -59,7 +59,8 @@ public class Robot extends TimedRobot {
   ClimberRaiseBackCommand climberRaiseBackCommand;
   ClimberRaiseFrontCommand climberRaiseFrontCommand;
   ClimberDriveCommand climberDriveCommand;
-  ClimberControl climberControl;
+  public static ClimberControl climberControl;
+  DriveClimberInCommand driveClimberInCommand;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -72,7 +73,7 @@ public class Robot extends TimedRobot {
     elevator = new Elevator();
     flower = new Flower();
     switcher = new Switcher();
-    vision = new Vision();
+    //vision = new Vision();
     climber = new Climber();
 
     gameToolStateMachine = new GameToolStateMachine();
@@ -97,6 +98,7 @@ public class Robot extends TimedRobot {
     climberRaiseFrontCommand = new ClimberRaiseFrontCommand();
     climberDriveCommand = new ClimberDriveCommand(1, 9);
     climberControl = new ClimberControl();
+    driveClimberInCommand = new DriveClimberInCommand(10);
 
 
     oi.gameToolIncrementButton.whenPressed(gameToolIncrementCommand);
@@ -112,6 +114,7 @@ public class Robot extends TimedRobot {
     oi.climbRaiseBackButton.whileHeld(climberRaiseBackCommand);
     oi.climbRaiseFrontButton.whileHeld(climberRaiseFrontCommand);
     oi.climbDriveButton.whileHeld(climberDriveCommand);
+    oi.climbResetButton.whileHeld(driveClimberInCommand);
   }
 
   /**
@@ -201,7 +204,7 @@ public class Robot extends TimedRobot {
     elevatorControl.start();
     switcherControl.start();
     gameToolStateMachine.reset();
-    climberControl.start();
+    //climberControl.start();
 
   }
 

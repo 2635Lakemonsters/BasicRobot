@@ -59,4 +59,5 @@ public class OI {
   public Button climbRaiseBackButton = new JoystickButton(leftJoy, 10);
   public Button climbDriveButton = new JoystickButton(leftJoy, 9);
   public Button climbRaiseFrontButton = new JoystickButton(leftJoy, 8);
+  public Button climbResetButton = new JoystickButton(leftJoy, 11);
 }

@@ -151,10 +151,7 @@ public class DriveSubsystemNeo extends Subsystem {
   public void tankDrive(double left, double right) {
     //System.out.println("Left Joystick:" + left);
     //System.out.println("Right Joystick: " + right);
-    double tempLeft;
-    double deadzone = 0.2;
-		double absleft = Math.abs(left);
-		double absright = Math.abs(right);
+    double deadzone = 0.08;
     // if(left > deadzone) {
     //   left = ((left - deadzone)/(1.0 - deadzone));
     // } else if(left < -deadzone) {
@@ -175,6 +172,7 @@ public class DriveSubsystemNeo extends Subsystem {
     //   left = -tempLeft;
     // } 
 
+    
     
     FRMotor.set(-right);
     FLMotor.set(left);

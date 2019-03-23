@@ -21,6 +21,7 @@ public class RaiseRobotCommand extends Command {
   protected void initialize() {
     Robot.climber.COMMAND_GROUP_STAGE = 0;
    // Robot.climber.reset();
+   Robot.climberControl.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -46,11 +47,13 @@ public class RaiseRobotCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.climber.setClimberZero();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

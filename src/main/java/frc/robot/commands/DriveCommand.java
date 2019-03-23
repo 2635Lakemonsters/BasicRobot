@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class DriveCommand extends Command {
+  double left;
+  double right;
   public DriveCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -26,7 +28,18 @@ public class DriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveSubsystem.tankDrive(-Robot.oi.leftJoy.getRawAxis(1), -Robot.oi.rightJoy.getRawAxis(1));
+    left = -Robot.oi.leftJoy.getRawAxis(1);
+    right = -Robot.oi.rightJoy.getRawAxis(1);
+
+    if(Math.abs(left) < 0.05){
+      left = 0;
+    }
+
+    if(Math.abs(right) < 0.05){
+      right = 0;
+    }
+
+    Robot.driveSubsystem.tankDrive(left, right);
    // Robot.driveSubsystem.tankDrive(0.3, 0.3);
     
   }
