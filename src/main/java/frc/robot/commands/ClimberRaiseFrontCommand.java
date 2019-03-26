@@ -28,7 +28,7 @@ public class ClimberRaiseFrontCommand extends Command {
   @Override
   protected void execute() {
     Robot.climber.raiseFrontClimber();
-    //Robot.driveSubsystem.tankDrive(0.3, 0.3);
+    Robot.driveSubsystem.tankDrive(0.1, 0.1);
     //What if this puts pressure on legs and they can't retract?
     //Run back wheel at same time and transition from wall contact on back legs?
     //This is likely the worst stage to be cancelled out of, as there is a higher likelyhood of falling at an angle, causing damage to the mast

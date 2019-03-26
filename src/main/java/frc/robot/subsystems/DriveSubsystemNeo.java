@@ -56,14 +56,14 @@ public class DriveSubsystemNeo extends Subsystem {
   public CANSparkMax FLMotor;
   CANSparkMax BLMotor;
 
-  public CANEncoder FREncoder;
-  public CANEncoder FLEncoder;
+  // public CANEncoder FREncoder;
+  // public CANEncoder FLEncoder;
 
   public boolean isReversed = false;
 
-  public long startTime;
-  int  index;
-  Solenoid gearBoxSolenoid;
+  // public long startTime;
+  // int  index;
+  // Solenoid gearBoxSolenoid;
 
   //---------EXPERIMENTAL PATH WEAVER CODE----------
   // Encoder m_left_encoder;
@@ -182,10 +182,10 @@ public class DriveSubsystemNeo extends Subsystem {
 		}
   //---------EXPERIMENTAL PATH WEAVER CODE-----------
   
-  public void encoderReset() {
-    FREncoder.setPosition(0);
-    FLEncoder.setPosition(0);
-  }
+  // public void encoderReset() {
+  //   FREncoder.setPosition(0);
+  //   FLEncoder.setPosition(0);
+  // }
 
   // public boolean PathAutoInit(String pathname) {
   //   encoderReset();

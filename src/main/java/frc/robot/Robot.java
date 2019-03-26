@@ -171,14 +171,16 @@ public class Robot extends TimedRobot {
     if (elevatorControl != null && !elevatorControl.isRunning()){
       elevatorControl.start();
     }
+    
     gameToolStateMachine.autonomousReset();
     //gameToolStateMachine.autoHatch();
-
+    switcherControl.start();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
+    
   }
 
   /**

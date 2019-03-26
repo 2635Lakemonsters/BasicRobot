@@ -70,7 +70,7 @@ public class Switcher extends Subsystem {
     //controller.setSmartMotionMaxVelocity(2000, 0);
     //controller.setSmartMotionMaxAccel(1500, 0);
     controller.setOutputRange(-1, 1);
-    encoder.setPosition(0);
+    //encoder.setPosition(0);
     
     // controller.setIZone(kIz);
     // controller.setFF(kFF);
@@ -117,11 +117,12 @@ public class Switcher extends Subsystem {
 	public boolean motorControl() {
     //System.out.println(currentTargetHeight.toString());
     //System.out.println("Target: " + currentSwitcherState.switcherEncoderPosition + " Current: " + encoder.getPosition());
-      
+    //System.out.println("Switcher motor pos: " + encoder.getPosition());
     target = currentSwitcherState.switcherEncoderPosition;
 
-    if(intermediateSetPoint > target && currentSwitcherState == SwitcherState.CARGO && encoder.getPosition() < 0.75){
+    if(intermediateSetPoint > target && (currentSwitcherState == SwitcherState.CARGO || currentSwitcherState == SwitcherState.FLOOR) && encoder.getPosition() < 0.75){
       controller.setReference(0, ControlType.kVoltage);
+      //System.out.println("Switcher powered off");
       //SmartDashboard.putNumber("intermediateSetPoint", encoder.getPosition());
       return false;
     }
