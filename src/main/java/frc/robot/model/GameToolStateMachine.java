@@ -33,6 +33,7 @@ public class GameToolStateMachine {
         Robot.flower.setFlowerBud(nextState.bud);
         currentState = nextState;
         System.out.println(currentState);
+        
     }
 
     GameTools resetState() {
@@ -47,6 +48,7 @@ public class GameToolStateMachine {
         Robot.flower.setFlowerBud(nextState.bud);
         currentState = nextState;
         System.out.println(currentState);
+        Robot.switcher.setIntermediateSetPoint(16);
     }
 
     GameTools autonomousResetState() {

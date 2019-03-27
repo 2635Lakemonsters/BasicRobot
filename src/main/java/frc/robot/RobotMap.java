@@ -114,14 +114,14 @@ public class RobotMap {
   public static final double ELEVATOR_AUTO_HATCH_HEIGHT = 27.25;
 
   public static final double ELEVATOR_AUTO_CARRIAGE_HEIGHT = 7.0;
-  public static final double SWITCHER_AUTO_HEIGHT = 17.0;
+  public static final double SWITCHER_AUTO_HEIGHT = 16.0;
 
 
   //public static final String k_path_name = "example";
   //------------------------------------------------------
   public static final double SWITCHER_FLOOR = 0;
   public static final double SWITCHER_CARGO = 0;
-  public static final double SWITCHER_HATCH = 18;
+  public static final double SWITCHER_HATCH = 17;
   //public static final double SWITCHER_REAR = 35; // rear deploy
   public static final double SWITCHER_REAR = 8; // front deploy 
 }

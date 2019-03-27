@@ -50,12 +50,13 @@ public class Switcher extends Subsystem {
     
     // PID coefficients
      //kP = 5e-7;
-     kP = 0.05; 
+     kP = 0.15; 
      //kP = 0;
      //kI = 1e-4;
      //kD = 1; 
      //kI = 1e-8;
      kI = 0;
+
      kD = 0.0; 
      kIz = 0; 
      //kFF = 0.000156;
@@ -96,6 +97,7 @@ public class Switcher extends Subsystem {
     //controller.setReference(setPoint.switcherEncoderPosition, ControlType.kSmartMotion);
     this.currentSwitcherState = setPoint;
     System.out.println("Current switcher position: " + encoder.getPosition());
+    
     // if(Robot.elevator.currentTargetHeight == Height.GROUND){
     //   if((setPoint == Position.FLOOR && currentPosition == Position.CARGO) || (setPoint == Position.CARGO && currentPosition == Position.FLOOR)){
     //     controller.setReference(setPoint.position+initialEncoderPosition, ControlType.kPosition);
@@ -119,15 +121,25 @@ public class Switcher extends Subsystem {
     //System.out.println("Target: " + currentSwitcherState.switcherEncoderPosition + " Current: " + encoder.getPosition());
     //System.out.println("Switcher motor pos: " + encoder.getPosition());
     target = currentSwitcherState.switcherEncoderPosition;
-
-    if(intermediateSetPoint > target && (currentSwitcherState == SwitcherState.CARGO || currentSwitcherState == SwitcherState.FLOOR) && encoder.getPosition() < 0.75){
+    // if(getCurrent() > 15 && (intermediateSetPoint > target)) {
+    //   System.out.println("Switcher Current Limit Reached");
+    //   controller.setReference(0, ControlType.kVoltage);
+    //   setIntermediateSetPoint(0);
+    //   encoderReset();
+    // } 
+    if(intermediateSetPoint >= target && (currentSwitcherState == SwitcherState.CARGO || currentSwitcherState == SwitcherState.FLOOR) && getCurrent()>10){
+      encoderReset();
+      controller.setReference(0, ControlType.kVoltage);
+    }
+    if(intermediateSetPoint >= target && (currentSwitcherState == SwitcherState.CARGO || currentSwitcherState == SwitcherState.FLOOR) && encoder.getPosition() < 1){
       controller.setReference(0, ControlType.kVoltage);
       //System.out.println("Switcher powered off");
       //SmartDashboard.putNumber("intermediateSetPoint", encoder.getPosition());
+      encoderReset();
       return false;
     }
 
-    if(intermediateSetPoint - target > -0.05 && intermediateSetPoint - target < 0.05){
+    if(intermediateSetPoint - target >= -0.16 && intermediateSetPoint - target <= 0.16){
       if(!reached){
         System.out.println("intermediateSetPoint at Target");
         reached = true;
@@ -142,7 +154,7 @@ public class Switcher extends Subsystem {
       
       
     }
-
+    
 
     
     //SmartDashboard.putNumber("intermediateSetPoint", encoder.getPosition());
@@ -206,6 +218,13 @@ public class Switcher extends Subsystem {
   
   public double getCurrentSwitch(){
     return encoder.getPosition();
+  }
+  
+  public void setIntermediateSetPoint(int point){
+    intermediateSetPoint = point;
+  }
+  public double getCurrent(){
+    return switchMotor.getOutputCurrent();
   }
 }
 

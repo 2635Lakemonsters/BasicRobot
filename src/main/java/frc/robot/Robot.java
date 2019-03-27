@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
   ClimberDriveCommand climberDriveCommand;
   public static ClimberControl climberControl;
   DriveClimberInCommand driveClimberInCommand;
+  boolean autoHappened;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -115,6 +116,7 @@ public class Robot extends TimedRobot {
     oi.climbRaiseFrontButton.whileHeld(climberRaiseFrontCommand);
     oi.climbDriveButton.whileHeld(climberDriveCommand);
     oi.climbResetButton.whileHeld(driveClimberInCommand);
+    autoHappened = false;
   }
 
   /**
@@ -180,7 +182,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
-    
+    autoHappened = true;
+    switcher.setIntermediateSetPoint((int) switcher.currentSwitcherState.switcherEncoderPosition);
   }
 
   /**
@@ -201,14 +204,17 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     driveCommand.start();
-
+    switcher.setIntermediateSetPoint((int) switcher.currentSwitcherState.switcherEncoderPosition);
     elevator.encoderStart();
     elevatorControl.start();
     switcherControl.start();
     gameToolStateMachine.reset();
     // Climber is now controlled only turned on when needed, by the button controls
     //climberControl.start(); 
-
+    if(autoHappened){
+      switcher.encoderReset();
+    }
+    autoHappened = false;
   }
 
   /**
